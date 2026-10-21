@@ -1,0 +1,96 @@
+﻿
+import type { ProjectDetail } from "./types";
+
+const duskyRose: ProjectDetail = {
+  title: "Dusky Rose",
+  slug: "dusky-rose",
+  location: "USA",
+  year: "2026",
+  area: "14,358 SQ FT",
+  description:
+    "Dusky Rose is an architectural project defined by a refined contemporary aesthetic, balanced proportions, and carefully considered spatial details.",
+  hero: "/images/projects/dusky-rose/project3/hero-horizontal.png",
+  disc: "/images/projects/dusky-rose/project3/disc.png",
+
+  gallery: [
+    {
+      images: [
+        {
+          name: "a-horizontal",
+          col: 1,
+          row: 1,
+          width: 636,
+          height: 357,
+        },
+      ],
+    },
+    {
+      images: [
+        {
+          name: "b-1-v2",
+          col: 1,
+          row: 1,
+          width: 637,
+          height: 902,
+        },
+        {
+          name: "b-2-v2",
+          col: 2,
+          row: 1,
+          width: 637,
+          height: 902,
+        },
+      ],
+    },
+    {
+      images: [
+        {
+          name: "d-1-v2",
+          col: 1,
+          row: 1,
+          width: 636,
+          height: 357,
+        },
+      ],
+    },
+    {
+      images: [
+        {
+          name: "d-2-a-v2",
+          col: 1,
+          row: 1,
+          width: 629,
+          height: 908,
+        },
+        {
+          name: "d-2-b-v2",
+          col: 2,
+          row: 1,
+          width: 621,
+          height: 357,
+        },
+      ],
+    },
+    {
+      images: [
+        {
+          name: "d-3-a-v2",
+          col: 1,
+          row: 1,
+          width: 636,
+          height: 908,
+        },
+        {
+          name: "d-3-b-v2",
+          col: 2,
+          row: 1,
+          width: 632,
+          height: 895,
+        },
+      ],
+    },
+  ],
+};
+
+export default duskyRose;
+

@@ -1,26 +1,1640 @@
+
 @import "tailwindcss";
 
+/* =========================================================
+   01. ROOT VARIABLES
+   ========================================================= */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0d0d0d;
+  --foreground: #ffffff;
 }
+
+
+/* =========================================================
+   02. TAILWIND THEME
+   ========================================================= */
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-inter);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+
+/* =========================================================
+   03. GLOBAL RESET
+   ========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: auto;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background-color: #181818;
+  color: #ffffff;
   font-family: Arial, Helvetica, sans-serif;
 }
+
+
+/* =========================================================
+   04. HOME STAGE
+   ========================================================= */
+
+.home-stage {
+  position: relative;
+  width: 100%;
+  background: #0d0d0d;
+}
+
+
+/* =========================================================
+   05. HOME HERO
+   ========================================================= */
+
+.hero {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  isolation: isolate;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: #0d0d0d;
+  opacity: 1;
+  will-change: transform;
+}
+
+
+/* =========================================================
+   06. DESKTOP HERO CONTAINER
+   ========================================================= */
+
+.hero-desktop {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background: #0d0d0d;
+  transform: scale(1);
+  will-change: transform;
+}
+
+.hero-desktop::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.4);
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   07. HERO CURRENT AND NEXT SLIDES
+   ========================================================= */
+
+.hero-current,
+.hero-next {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-current {
+  z-index: 1;
+}
+
+.hero-next {
+  z-index: 2;
+}
+
+
+/* =========================================================
+   08. HERO IMAGE HALVES
+   ========================================================= */
+
+.hero-half {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  overflow: hidden;
+  transition: transform 1s ease-in-out;
+}
+
+.hero-top {
+  top: 0;
+}
+
+.hero-bottom {
+  bottom: 0;
+}
+
+
+/* =========================================================
+   09. HERO IMAGE WRAPPER
+   ========================================================= */
+
+.hero-image-wrapper {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  transition: transform 1s ease-in-out;
+}
+
+
+/* =========================================================
+   10. HERO IMAGES
+   ========================================================= */
+
+.hero-half img {
+  position: absolute;
+  left: 0;
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  max-width: none;
+  object-fit: cover;
+  transition:
+    transform 1s ease-in-out,
+    opacity 1s ease-in-out;
+  will-change: transform, opacity;
+}
+
+
+/* =========================================================
+   11. HERO TOP IMAGE
+   ========================================================= */
+
+.hero-top .hero-image-wrapper {
+  top: 0;
+  transform: translateX(10vw) translateY(10vh);
+}
+
+.hero-top img {
+  top: 0;
+  transform: translateX(-10vw) translateY(-10vw) scale(1.2);
+  transform-origin: top left;
+}
+
+
+/* =========================================================
+   12. HERO BOTTOM IMAGE
+   ========================================================= */
+
+.hero-bottom .hero-image-wrapper {
+  bottom: 0;
+  transform: translateX(-10vw) translateY(-10vh);
+}
+
+.hero-bottom img {
+  top: auto;
+  bottom: 0;
+  transform: translateX(10vw) translateY(10vw) scale(1.2);
+  transform-origin: bottom right;
+}
+
+
+/* =========================================================
+   13. HERO SLIDE TRANSITION
+   ========================================================= */
+
+.hero-next .hero-top {
+  transform: translateY(100%);
+}
+
+.hero-next .hero-bottom {
+  transform: translateY(-100%);
+}
+
+.hero-next .hero-enter-top {
+  animation: heroEnterTop 1s ease-in-out forwards;
+}
+
+.hero-next .hero-enter-bottom {
+  animation: heroEnterBottom 1s ease-in-out forwards;
+}
+
+@keyframes heroEnterTop {
+  from {
+    transform: translateY(100%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroEnterBottom {
+  from {
+    transform: translateY(-100%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+
+/* =========================================================
+   14. HERO ACTIVE IMAGE RESET
+   ========================================================= */
+
+.hero-show .hero-current .hero-image-wrapper,
+.hero-show .hero-current img,
+.hero-show .hero-next .hero-image-wrapper,
+.hero-show .hero-next img {
+  transform: none;
+}
+
+
+/* =========================================================
+   15. HERO DARK OVERLAY
+   ========================================================= */
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  background: #000000;
+  pointer-events: none;
+  opacity: 0;
+}
+
+
+/* =========================================================
+   16. HERO BLACK ATMOSPHERE
+   ========================================================= */
+
+.hero-black-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(5, 5, 5, 0.08) 30%,
+    rgba(5, 5, 5, 0.32) 55%,
+    rgba(5, 5, 5, 0.82) 82%,
+    rgba(5, 5, 5, 0.98) 100%
+  );
+  opacity: 0;
+}
+
+
+/* =========================================================
+   17. HERO WARM LIGHT
+   ========================================================= */
+
+.hero-warm-light {
+  position: absolute;
+  left: 50%;
+  bottom: -30%;
+  z-index: 7;
+  width: 55vw;
+  height: 55vw;
+  max-width: 700px;
+  max-height: 700px;
+  border-radius: 50%;
+  background: #c9a46a;
+  filter: blur(150px);
+  opacity: 0;
+  transform: translate(-50%, 0) scale(0.75);
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+
+/* =========================================================
+   18. HERO CONTENT LAYER
+   ========================================================= */
+
+.hero-content-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  will-change: transform, opacity;
+}
+
+
+/* =========================================================
+   19. HERO CENTER DIVIDER
+   ========================================================= */
+
+.hero-divider {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.4);
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   20. HERO DIAGONAL LINE
+   ========================================================= */
+
+.hero-diagonal {
+  position: absolute;
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   21. HERO TITLE CONTAINER
+   ========================================================= */
+
+.hero-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 20;
+  width: 100%;
+  color: #ffffff;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.hero-title-item {
+  overflow: hidden;
+  transition: transform 2s ease-in-out;
+}
+
+.hero-title-first {
+  margin-left: -9rem;
+  transform: translateX(-100vw);
+}
+
+.hero-title-second {
+  transform: translateX(100vw);
+}
+
+.hero-title-item span {
+  display: block;
+  transform-origin: 0 50%;
+  transition: transform 2s ease-in-out;
+}
+
+
+/* =========================================================
+   22. HERO TITLE TYPOGRAPHY
+   ========================================================= */
+
+.hero-title-small {
+  font-size: 35px;
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transform: translateY(100%) rotate(10deg);
+}
+
+.hero-title-second span {
+  font-size: clamp(32px, 4vw, 64px);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  transform: translateY(100%) rotate(10deg);
+}
+
+.hero-title em {
+  font-style: italic;
+  font-weight: 400;
+}
+
+
+/* =========================================================
+   23. HERO TITLE REVEAL
+   ========================================================= */
+
+.hero-show .hero-title-first,
+.hero-show .hero-title-second {
+  transform: translateX(0);
+}
+
+.hero-show .hero-title-item span {
+  transform: translateY(0) rotate(0);
+}
+
+
+/* =========================================================
+   24. HERO CTA BUTTON
+   ========================================================= */
+
+.hero-cta {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: 17rem;
+  height: 17rem;
+  margin-left: -70rem;
+  margin-top: -11rem;
+  text-decoration: none;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  transition: margin-left 2s ease-in-out;
+}
+
+.hero-cta::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0);
+  transition:
+    opacity 0.4s ease-out,
+    transform 0.4s ease-out;
+}
+
+
+/* =========================================================
+   25. HERO CTA TEXT
+   ========================================================= */
+
+.hero-cta span {
+  position: relative;
+  z-index: 10;
+  display: block;
+  max-width: 50%;
+  margin-top: 2rem;
+  margin-left: 5rem;
+  font-size: 1rem;
+  line-height: 1.3rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  background: linear-gradient(
+    225deg,
+    #e5cca8,
+    #88704e,
+    #e5cca8
+  );
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 3s linear infinite;
+}
+
+.hero-cta svg {
+  position: relative;
+  z-index: 10;
+  width: 1.6rem;
+  height: 0.8rem;
+  margin-top: 1.6rem;
+  margin-left: 5rem;
+  fill: #ffffff;
+  transition: margin-left 0.4s ease-out;
+}
+
+
+/* =========================================================
+   26. HERO CTA CIRCLE
+   ========================================================= */
+
+.hero-cta-circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 5;
+  width: 25.5rem;
+  height: 25.5rem;
+  overflow: visible;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.hero-cta-circle-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-cta-circle-inner::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #e5cca8;
+  border-radius: 50%;
+  transition:
+    width 0.4s ease-out,
+    height 0.4s ease-out,
+    border-color 0.4s ease-out;
+}
+
+
+/* =========================================================
+   27. HERO CTA ACTIVE STATE AND HOVER
+   ========================================================= */
+
+.hero-show .hero-cta {
+  margin-left: -35rem;
+}
+
+.hero-show .hero-cta::before {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.hero-cta:hover::before {
+  width: 22rem;
+  height: 22rem;
+  transform: translate(-50%, -50%);
+}
+
+.hero-cta:hover svg {
+  margin-left: 14rem;
+}
+
+.hero-cta:hover .hero-cta-circle-inner::before {
+  width: 22rem;
+  height: 22rem;
+}
+
+
+/* =========================================================
+   28. HERO SCROLLER
+   ========================================================= */
+
+.hero-scroller {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  z-index: 30;
+  width: 1px;
+  height: 5rem;
+  background: rgba(255, 255, 255, 0.4);
+  transform: translateX(-50%) translateY(30vh);
+  transition: transform 2s ease-in-out;
+}
+
+.hero-scroller span {
+  position: absolute;
+  top: 0;
+  left: -1px;
+  display: block;
+  width: 3px;
+  height: 2rem;
+  background: #ffffff;
+  animation: scrollDown 3s ease-in-out infinite;
+}
+
+@keyframes scrollDown {
+  0% {
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 1;
+    transform: translateY(3rem);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(3rem);
+  }
+}
+
+@keyframes shine {
+  to {
+    background-position: 200% center;
+  }
+}
+
+
+/* =========================================================
+   29. PROJECTS SECTION
+   ========================================================= */
+
+.projects-section {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  color: #ffffff;
+  background: transparent;
+}
+
+
+/* =========================================================
+   30. PROJECTS BACKGROUND GRADIENT
+   ========================================================= */
+
+.projects-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    to bottom,
+    rgba(28, 28, 28, 0.35) 0%,
+    rgba(28, 28, 28, 0.75) 18%,
+    #1c1c1c 38%,
+    #1c1c1c 100%
+  );
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   31. PROJECT HERO — MAIN CONTAINER
+   ========================================================= */
+
+.project-hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 700px;
+  overflow: hidden;
+  color: #ffffff;
+  background: #0d0d0d;
+}
+
+
+/* =========================================================
+   32. PROJECT HERO — IMAGE LAYERS
+   ========================================================= */
+
+.project-hero-half {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.project-hero-half img {
+  transition: transform 1.5s cubic-bezier(0.77, 0, 0.18, 1);
+  will-change: transform;
+}
+
+
+/* =========================================================
+   33. PROJECT HERO — TOP IMAGE
+   ========================================================= */
+
+.project-hero-top {
+  clip-path: inset(0 100% 50% 0);
+  transform: translateX(3vw) translateY(-1vh);
+  transition:
+    clip-path 2s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.project-hero-top img {
+  transform: translate(-2vw, 2vh) scale(1.12);
+  transform-origin: top left;
+}
+
+
+/* =========================================================
+   34. PROJECT HERO — BOTTOM IMAGE
+   ========================================================= */
+
+.project-hero-bottom {
+  clip-path: inset(50% 100% 0 0);
+  transform: translateX(-3vw) translateY(1vh);
+  transition:
+    clip-path 2s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.project-hero-bottom img {
+  transform: translate(2vw, -2vh) scale(1.12);
+  transform-origin: bottom right;
+}
+
+
+/* =========================================================
+   35. PROJECT HERO — REVEAL ANIMATION
+   ========================================================= */
+
+.project-hero-visible .project-hero-top {
+  clip-path: inset(0 0 50% 0);
+  transform: translate(0, 0);
+}
+
+.project-hero-visible .project-hero-bottom {
+  clip-path: inset(50% 0 0 0);
+  transform: translate(0, 0);
+}
+
+.project-hero-visible .project-hero-half img {
+  transform: none;
+}
+
+
+/* =========================================================
+   36. PROJECT HERO — IMAGE OVERLAY
+   ========================================================= */
+
+.project-hero-half::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 7;
+  background: rgba(0, 0, 0, 0.25);
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   37. PROJECT HERO — INTRO SCREEN
+   ========================================================= */
+
+.project-hero-intro {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0d0d0d;
+  transition:
+    opacity 0.8s ease,
+    visibility 0.8s ease;
+}
+
+.project-hero-intro span {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 11px;
+  letter-spacing: 0.35em;
+}
+
+.project-hero-visible .project-hero-intro {
+  opacity: 0;
+  visibility: hidden;
+  transition-delay: 0.7s;
+}
+
+.project-hero-line {
+  display: none;
+}
+
+
+/* =========================================================
+   38. PROJECT HERO — PROJECT INFORMATION
+   ========================================================= */
+
+.project-hero-info {
+  position: absolute;
+  left: 7vw;
+  bottom: 8vh;
+  z-index: 9;
+  color: #ffffff;
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
+  transition-delay: 1s;
+}
+
+.project-hero-visible .project-hero-info {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.project-hero-label {
+  display: block;
+  margin-bottom: 14px;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 9px;
+  letter-spacing: 0.35em;
+}
+
+.project-hero-info h1 {
+  margin: 0;
+  font-size: clamp(42px, 6vw, 92px);
+  font-weight: 300;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+}
+
+
+/* =========================================================
+   39. PROJECT HERO — META AND TITLE
+   ========================================================= */
+
+.project-hero-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 24px;
+  padding-left: 100px;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 20px;
+  font-weight: 300;
+  letter-spacing: 0.16em;
+  line-height: 1.8;
+}
+
+.project-hero-title {
+  font-size: clamp(28px, 3.2vw, 46px);
+  line-height: 1.15;
+  letter-spacing: 0.02em;
+  animation: projectTitleReveal 1s cubic-bezier(0.22, 1, 0.36, 1) 0.5s both;
+}
+
+.project-hero-title-bold {
+  font-weight: 700;
+}
+
+.project-hero-title-light {
+  font-weight: 300;
+}
+
+@keyframes projectTitleReveal {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* =========================================================
+   40. INTRO SCREEN — CONTAINER
+   ========================================================= */
+
+.intro-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  overflow: hidden;
+  background: transparent;
+  pointer-events: auto;
+}
+
+.intro-screen__frame {
+  position: absolute;
+  background: #0d0d0d;
+  animation-fill-mode: both;
+  animation-timing-function: cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+
+/* =========================================================
+   41. INTRO SCREEN — TOP AND BOTTOM PANELS
+   ========================================================= */
+
+.intro-screen__frame--top {
+  top: 0;
+  left: 0;
+  z-index: 4;
+  width: 100%;
+  height: 50%;
+  animation: introFrameTop 1.2s 0.8s forwards;
+}
+
+.intro-screen__frame--bottom {
+  bottom: 0;
+  left: 0;
+  z-index: 4;
+  width: 100%;
+  height: 50%;
+  animation: introFrameBottom 1.2s 0.8s forwards;
+}
+
+
+/* =========================================================
+   42. INTRO SCREEN — LEFT AND RIGHT PANELS
+   ========================================================= */
+
+.intro-screen__frame--left {
+  top: 0;
+  left: 0;
+  z-index: 3;
+  width: 50%;
+  height: 100%;
+  animation: introFrameLeft 1.2s 2.1s forwards;
+}
+
+.intro-screen__frame--right {
+  top: 0;
+  right: 0;
+  z-index: 3;
+  width: 50%;
+  height: 100%;
+  animation: introFrameRight 1.2s 2.1s forwards;
+}
+
+
+/* =========================================================
+   43. INTRO SCREEN — WHITE LINE
+   ========================================================= */
+
+.intro-screen__line {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  z-index: 5;
+  width: 100%;
+  height: 1px;
+  background: #ffffff;
+  transform: scaleX(0);
+  transform-origin: left center;
+  animation:
+    introLineSweep 1s ease-in-out forwards,
+    introLineFade 0.3s ease 1s forwards;
+}
+
+
+/* =========================================================
+   44. INTRO SCREEN — BRAND
+   ========================================================= */
+
+.intro-screen__brand {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  z-index: 6;
+  color: #ffffff;
+  white-space: nowrap;
+  font-size: clamp(30px, 4vw, 52px);
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  transform: translate(-50%, -50%);
+  animation: introBrandMove 2.8s cubic-bezier(0.77, 0, 0.175, 1) 0.2s forwards;
+}
+
+
+/* =========================================================
+   45. INTRO SCREEN — PANEL ANIMATIONS
+   ========================================================= */
+
+@keyframes introFrameTop {
+  to {
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes introFrameBottom {
+  to {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes introFrameLeft {
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes introFrameRight {
+  to {
+    transform: translateX(100%);
+  }
+}
+
+
+/* =========================================================
+   46. INTRO SCREEN — LINE ANIMATIONS
+   ========================================================= */
+
+@keyframes introLineSweep {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes introLineFade {
+  to {
+    opacity: 0;
+  }
+}
+
+
+/* =========================================================
+   47. INTRO SCREEN — BRAND ANIMATION
+   ========================================================= */
+
+@keyframes introBrandMove {
+  0% {
+    top: 40%;
+    left: 50%;
+    font-size: clamp(30px, 4vw, 52px);
+    letter-spacing: 0.28em;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+  }
+
+  12% {
+    opacity: 1;
+  }
+
+  70% {
+    opacity: 1;
+  }
+
+  100% {
+    top: 12px;
+    left: 50%;
+    font-size: 15px;
+    letter-spacing: 0.28em;
+    opacity: 0;
+    transform: translate(-50%, 0);
+  }
+}
+
+
+/* =========================================================
+   48. PROJECTS MARQUEE — CONTAINER
+   نوار متحرک نوشته PROJECTS
+   ========================================================= */
+
+.projects-marquee {
+  position: relative;
+  z-index: 0;
+  isolation: isolate;
+  width: 100%;
+  overflow: hidden;
+  padding: 22px 0;
+  margin-bottom: 24px;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+
+/* =========================================================
+   49. PROJECTS MARQUEE — TRACK
+   مسیر حرکت نوشته‌ها
+   ========================================================= */
+
+.projects-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: projectsMarqueeMove 35s linear infinite;
+  will-change: transform;
+}
+
+
+/* =========================================================
+   50. PROJECTS MARQUEE — GROUP
+   فاصله‌ی بین گروه‌های تکراری
+   ========================================================= */
+
+.projects-marquee-group {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 10px;
+  padding-right: 18px;
+}
+
+
+/* =========================================================
+   51. PROJECTS MARQUEE — THIN WORDS
+   نوشته‌های بزرگ با ضخامت خطی
+   ========================================================= */
+
+.projects-marquee-word {
+  display: block;
+  flex-shrink: 0;
+
+  color: rgba(220, 220, 220, 0.12);
+
+ font-size: clamp(24px, 2.8vw, 38px);
+  font-weight: 800;
+  line-height: 1;
+
+  letter-spacing: 0.035em;
+  white-space: nowrap;
+
+  -webkit-text-stroke: 0;
+  text-shadow: none;
+
+  transform: scaleX(0.78);
+  transform-origin: center;
+}
+
+
+/* =========================================================
+   52. PROJECTS MARQUEE — ALTERNATE WORDS
+   نوشته‌های زوج: بزرگ‌تر، اما همچنان خطی
+   ========================================================= */
+
+.projects-marquee-group .projects-marquee-word:nth-child(even) {
+  color: rgba(220, 220, 220, 0.09);
+
+ font-size: clamp(24px, 2.8vw, 38px);
+  font-weight: 10;
+
+  letter-spacing: 0.015em;
+
+  -webkit-text-stroke: 0;
+  text-shadow: none;
+}
+
+/* =========================================================
+   53. PROJECTS MARQUEE — MOVEMENT
+   ========================================================= */
+
+@keyframes projectsMarqueeMove {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+
+/* =========================================================
+   54. PROJECTS MARQUEE — MOBILE
+   ========================================================= */
+
+@media (max-width: 768px) {
+  .projects-marquee {
+    padding: 16px 0;
+    margin-bottom: 18px;
+  }
+
+  .projects-marquee-group {
+    gap: 5px;
+    padding-right:10px;
+  }
+
+  .projects-marquee-word {
+    font-size: 10px;
+    letter-spacing: 0.01em;
+    -webkit-text-stroke: 0.1px rgba(220, 220, 220, 0.1);
+  }
+}
+
+
+/* =========================================================
+   55. PROCESS SECTION BACKGROUND
+   ========================================================= */
+
+.process-section {
+  position: relative;
+  isolation: isolate;
+  background: linear-gradient(
+    to bottom,
+    #242424 0%,
+    #202020 35%,
+    #1c1c1c 75%,
+    #1c1c1c 100%
+  );
+}
+
+
+/* =========================================================
+   56. METALLIC LOGO
+   ========================================================= */
+
+.metallic-logo {
+  position: relative;
+  display: inline-block;
+  color: transparent;
+  background-image: linear-gradient(
+    110deg,
+    #777777 0%,
+    #d6d6d6 18%,
+    #ffffff 32%,
+    #999999 43%,
+    #ffffff 50%,
+    #777777 62%,
+    #eeeeee 78%,
+    #999999 100%
+  );
+  background-size: 250% 100%;
+  background-position: 100% 50%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter:
+    drop-shadow(0 1px 0 rgba(255, 255, 255, 0.55))
+    drop-shadow(0 3px 2px rgba(0, 0, 0, 0.65));
+  animation: metallic-shine 4s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   57. METALLIC LOGO ANIMATION
+   ========================================================= */
+
+@keyframes metallic-shine {
+  0% {
+    background-position: 100% 50%;
+  }
+
+  50% {
+    background-position: 0% 50%;
+  }
+
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+
+/* =========================================================
+   58. TABLET — HERO LAYOUT
+   ========================================================= */
+
+@media (min-width: 768px) and (max-width: 1279px) {
+  .hero-diagonal {
+    top: 70%;
+    left: 25%;
+    transform: rotate(-65deg);
+    transform-origin: 0 0;
+  }
+
+  .hero-show .hero-diagonal {
+    height: 28rem;
+  }
+
+  .hero-cta {
+    top: 10rem;
+    right: -1.5rem;
+    left: auto;
+    margin: 0;
+    transform: translateX(100%);
+  }
+
+  .hero-show .hero-cta {
+    margin: 0;
+    transform: translateX(0);
+  }
+
+  .hero-title-first {
+    margin-left: 0;
+  }
+}
+
+
+/* =========================================================
+   59. DESKTOP — HERO LAYOUT
+   ========================================================= */
+
+@media (min-width: 1280px) {
+  .hero-cta {
+    top: 50%;
+    right: auto;
+    left: 50%;
+    margin-left: -70rem;
+    margin-top: -11rem;
+  }
+
+  .hero-show .hero-cta {
+    margin-left: -35rem;
+  }
+
+  .hero-diagonal {
+    top: 73%;
+    left: 25%;
+    transform: rotate(-135deg);
+    transform-origin: 0 0;
+  }
+
+  .hero-show .hero-diagonal {
+    height: 50rem;
+  }
+}
+
+
+/* =========================================================
+   60. LARGE DESKTOP — HERO LAYOUT
+   ========================================================= */
+
+@media (min-width: 1440px) {
+  .hero-diagonal {
+    top: 70%;
+  }
+}
+
+
+/* =========================================================
+   61. MOBILE — HERO IMAGE
+   ========================================================= */
+
+@media (max-width: 767px) {
+  .hero-desktop {
+    display: none;
+  }
+
+  .hero-mobile {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #0d0d0d;
+    will-change: transform;
+  }
+
+  .hero-mobile-image {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 1s ease-in-out;
+  }
+
+  .hero-mobile-image:first-child {
+    z-index: 1;
+    opacity: 1;
+  }
+
+  .hero-mobile-next {
+    z-index: 2;
+    opacity: 0;
+  }
+
+  .hero-mobile-next-changing {
+    opacity: 1;
+  }
+
+  .hero-mobile-next:not(.hero-mobile-next-changing) {
+    opacity: 0;
+  }
+
+
+  /* -----------------------------------------
+     MOBILE TITLE
+     ----------------------------------------- */
+
+  .hero-title-first {
+    margin-left: 0;
+  }
+
+  .hero-title-small {
+    font-size: 20px;
+  }
+
+  .hero-title-second span {
+    font-size: 30px;
+    line-height: 1.1;
+  }
+
+
+  /* -----------------------------------------
+     MOBILE DIAGONAL
+     ----------------------------------------- */
+
+  .hero-diagonal {
+    top: 70%;
+    left: 25%;
+    transform: rotate(-65deg);
+    transform-origin: 0 0;
+  }
+
+  .hero-show .hero-diagonal {
+    height: 20rem;
+  }
+
+
+  /* -----------------------------------------
+     MOBILE CTA
+     ----------------------------------------- */
+
+  .hero-cta {
+    top: 8rem;
+    right: -2rem;
+    left: auto;
+    width: 12rem;
+    height: 12rem;
+    margin: 0;
+    transform: translateX(100%);
+  }
+
+  .hero-show .hero-cta {
+    margin: 0;
+    transform: translateX(0);
+  }
+
+  .hero-cta span {
+    margin-left: 3rem;
+    font-size: 0.75rem;
+    line-height: 1rem;
+  }
+
+  .hero-cta svg {
+    width: 1.3rem;
+    margin-left: 3rem;
+  }
+
+  .hero-cta-circle {
+    width: 12rem;
+    height: 12rem;
+  }
+
+  .hero-cta-circle-inner {
+    width: 100%;
+    height: 100%;
+  }
+
+
+  /* -----------------------------------------
+     MOBILE SCROLLER
+     ----------------------------------------- */
+
+  .hero-scroller {
+    bottom: 1.5rem;
+  }
+
+
+  /* -----------------------------------------
+     MOBILE WARM LIGHT
+     ----------------------------------------- */
+
+  .hero-warm-light {
+    bottom: -25%;
+    width: 90vw;
+    height: 90vw;
+    filter: blur(110px);
+  }
+
+
+  /* -----------------------------------------
+     MOBILE PROJECT HERO
+     ----------------------------------------- */
+
+  .project-hero {
+    min-height: 620px;
+  }
+
+  .project-hero-info {
+    right: 24px;
+    bottom: 60px;
+    left: 24px;
+  }
+
+  .project-hero-info h1 {
+    font-size: clamp(42px, 12vw, 64px);
+  }
+}
+
+
+/* =========================================================
+   62. TABLET AND LARGER — TITLE OVERFLOW
+   ========================================================= */
+
+@media (min-width: 768px) {
+  .hero-title-item {
+    overflow: hidden;
+  }
+}
+
+
+/* =========================================================
+   63. REDUCED MOTION — HERO
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .hero,
+  .hero-half,
+  .hero-image-wrapper,
+  .hero-half img,
+  .hero-title-item,
+  .hero-title-item span,
+  .hero-cta,
+  .hero-scroller,
+  .hero-diagonal,
+  .hero-warm-light {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .projects-marquee-track {
+    animation: none !important;
+  }
+
+  .metallic-logo {
+    animation: none !important;
+  }
+}
+
+
+
+/* =========================================================
+   ABOUT MARQUEE
+   هماهنگ با Projects Marquee
+   ========================================================= */
+
+.about-marquee {
+  position: relative;
+  z-index: 0;
+  isolation: isolate;
+  width: 100%;
+  overflow: hidden;
+  padding: 22px 0;
+  margin-bottom: 24px;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.about-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: aboutMarqueeMove 35s linear infinite;
+  will-change: transform;
+}
+
+.about-marquee-group {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 10px;
+  padding-right: 18px;
+}
+
+.about-marquee-word {
+  display: block;
+  flex-shrink: 0;
+  color: rgba(220, 220, 220, 0.12);
+  font-size: clamp(24px, 2.8vw, 38px);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0.035em;
+  white-space: nowrap;
+  transform: scaleX(0.78);
+  transform-origin: center;
+}
+
+@keyframes aboutMarqueeMove {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 768px) {
+  .about-marquee {
+    padding: 16px 0;
+    margin-bottom: 18px;
+  }
+
+  .about-marquee-group {
+    gap: 5px;
+    padding-right: 10px;
+  }
+
+  .about-marquee-word {
+    font-size: 10px;
+    letter-spacing: 0.01em;
+  }
+}
+

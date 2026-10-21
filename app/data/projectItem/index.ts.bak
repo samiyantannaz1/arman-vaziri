@@ -1,0 +1,28 @@
+import noirNest from "./noir-nest";
+import tempoHouse from "./tempo-house";
+import opalVista from "./opal-vista";
+import velvetEarth from "./velvet-earth";
+import tranquilLux from "./tranquil-lux";
+import bitterVilla from "./bitter-villa";
+import boldFusion from "./bold-fusion";
+import noirHorizon from "./noir-horizon";
+import bloomeHose from "./bloome-hose";
+import ethraRestaurant from "./ethra-restaurant";
+import duskyRose from "./dusky-rose"
+export const projectDetails = [
+  noirNest,
+  tempoHouse,
+  opalVista,
+  velvetEarth,
+  tranquilLux,
+  bitterVilla,
+  boldFusion,
+  noirHorizon,
+  bloomeHose,
+  ethraRestaurant,
+  duskyRose,
+];
+
+export function getProjectBySlug(slug: string) {
+  return projectDetails.find((project) => project.slug === slug);
+}
