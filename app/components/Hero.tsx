@@ -433,14 +433,18 @@ export default function Hero() {
             <br />
             request
           </span>
-
-          <svg
-            viewBox="0 0 16 8"
-            aria-hidden="true"
-          >
-            <path d="M0 3.5h13.2L10.2.5l.7-.7L16 4l-5.1 4.2-.7-.7 3-3H0v-1z" />
-          </svg>
-
+<svg
+  viewBox="0 0 20 10"
+  aria-hidden="true"
+  className="hero-cta-arrow"
+  fill="none"
+  stroke="#e5cca8"
+  strokeWidth="0.8"
+  strokeLinecap="round"
+  strokeLinejoin="round"
+>
+  <path d="M1 5h17m-4-4 4 4-4 4" />
+</svg>
           <div className="hero-cta-circle">
             <div className="hero-cta-circle-inner" />
           </div>

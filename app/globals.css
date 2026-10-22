@@ -485,18 +485,20 @@ body {
     transform 0.4s ease-out;
 }
 
-
 /* =========================================================
    25. HERO CTA TEXT
    ========================================================= */
 
 .hero-cta span {
-  position: relative;
-  z-index: 10;
+  position: absolute;
+  top: 70%;
+  left: 130%;
+  z-index: 6;
   display: block;
   max-width: 50%;
-  margin-top: 2rem;
-  margin-left: 5rem;
+  margin: 0;
+  transform: translate(-50%, -50%);
+  text-align: center;
   font-size: 1rem;
   line-height: 1.3rem;
   letter-spacing: 0.2em;
@@ -515,16 +517,18 @@ body {
 }
 
 .hero-cta svg {
-  position: relative;
-  z-index: 10;
+  position: absolute;
+  top: calc(70% + 2.5rem);
+  left: 130%;
+  z-index: 6;
   width: 1.6rem;
   height: 0.8rem;
-  margin-top: 1.6rem;
-  margin-left: 5rem;
-  fill: #ffffff;
-  transition: margin-left 0.4s ease-out;
+  margin: 0;
+  transform: translateX(-50%);
+  fill: none;
+  stroke: #e5cca8;
+  transition: none;
 }
-
 
 /* =========================================================
    26. HERO CTA CIRCLE
@@ -532,11 +536,11 @@ body {
 
 .hero-cta-circle {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 70%;
+  left: 130%;
   z-index: 5;
-  width: 25.5rem;
-  height: 25.5rem;
+  width: 17rem;
+  height: 17rem;
   overflow: visible;
   transform: translate(-50%, -50%);
   pointer-events: none;
@@ -544,8 +548,7 @@ body {
 
 .hero-cta-circle-inner {
   position: absolute;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100%;
   height: 100%;
 }
@@ -553,48 +556,48 @@ body {
 .hero-cta-circle-inner::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
+  inset: 0;
   display: block;
   width: 100%;
   height: 100%;
+  box-sizing: border-box;
   border: 1px solid #e5cca8;
   border-radius: 50%;
+  transform: scale(1);
+  transform-origin: center;
   transition:
-    width 0.4s ease-out,
-    height 0.4s ease-out,
+    transform 0.4s ease-out,
     border-color 0.4s ease-out;
 }
-
 
 /* =========================================================
    27. HERO CTA ACTIVE STATE AND HOVER
    ========================================================= */
 
 .hero-show .hero-cta {
-  margin-left: -35rem;
+  margin-left: -10rem;
 }
 
 .hero-show .hero-cta::before {
+  top: 70%;
+  left: 130%;
+  width: 17rem;
+  height: 17rem;
   opacity: 1;
   transform: translate(-50%, -50%) scale(1);
 }
 
 .hero-cta:hover::before {
-  width: 22rem;
-  height: 22rem;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(0.88);
 }
 
 .hero-cta:hover svg {
-  margin-left: 14rem;
+  margin-left: 0;
 }
 
 .hero-cta:hover .hero-cta-circle-inner::before {
-  width: 22rem;
-  height: 22rem;
+  transform: scale(0.88);
 }
-
 
 /* =========================================================
    28. HERO SCROLLER
@@ -602,7 +605,7 @@ body {
 
 .hero-scroller {
   position: absolute;
-  bottom: 2.5rem;
+  bottom: 20rem;
   left: 50%;
   z-index: 30;
   width: 1px;
@@ -618,7 +621,7 @@ body {
   left: -1px;
   display: block;
   width: 3px;
-  height: 2rem;
+  height:  2.5rem;
   background: #ffffff;
   animation: scrollDown 3s ease-in-out infinite;
 }
@@ -1442,46 +1445,75 @@ body {
   }
 
 
-  /* -----------------------------------------
-     MOBILE CTA
-     ----------------------------------------- */
 
-  .hero-cta {
-    top: 8rem;
-    right: -2rem;
-    left: auto;
-    width: 12rem;
-    height: 12rem;
-    margin: 0;
-    transform: translateX(100%);
-  }
+/* -----------------------------------------
+   MOBILE CTA
+   ----------------------------------------- */
 
-  .hero-show .hero-cta {
-    margin: 0;
-    transform: translateX(0);
-  }
+.hero-cta {
+  top: 8rem;
+  right: -2rem;
+  left: auto;
+  width: 12rem;
+  height: 12rem;
+  margin: 0;
+  transform: translateX(100%);
+}
 
-  .hero-cta span {
-    margin-left: 3rem;
-    font-size: 0.75rem;
-    line-height: 1rem;
-  }
+.hero-show .hero-cta {
+  margin: 0;
+  transform: translateX(0);
+}
 
-  .hero-cta svg {
-    width: 1.3rem;
-    margin-left: 3rem;
-  }
+.hero-cta span {
+  top: 70%;
+  left: 130%;
+  max-width: 70%;
+  margin: 0;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  letter-spacing: 0.12em;
+  text-align: center;
+}
 
-  .hero-cta-circle {
-    width: 12rem;
-    height: 12rem;
-  }
+.hero-cta svg {
+  top: calc(70% + 2.2rem);
+  left: 130%;
+  width: 1.2rem;
+  height: 1.2rem;
+  margin: 0;
+  fill: none;
+  stroke: #e5cca8;
+  stroke-width: 1.2;
+}
 
-  .hero-cta-circle-inner {
-    width: 100%;
-    height: 100%;
-  }
+.hero-cta-circle {
+  top: 70%;
+  left: 130%;
+  z-index: 5;
+  width: 12rem;
+  height: 12rem;
+}
 
+.hero-cta-circle-inner {
+  width: 100%;
+  height: 100%;
+}
+
+.hero-show .hero-cta::before {
+  top: 70%;
+  left: 130%;
+  width: 12rem;
+  height: 12rem;
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.hero-cta:hover::before {
+  width: 12rem;
+  height: 12rem;
+  transform: translate(-50%, -50%) scale(0.88);
+}
 
   /* -----------------------------------------
      MOBILE SCROLLER
@@ -1553,6 +1585,7 @@ body {
     animation: none !important;
     transition: none !important;
   }
+  
 
   .projects-marquee-track {
     animation: none !important;
@@ -1633,6 +1666,250 @@ body {
   }
 
   .about-marquee-word {
+    font-size: 10px;
+    letter-spacing: 0.01em;
+  }
+}
+
+
+/* ABOUT PAGE — TOP RIGHT GOLDEN LIGHT */
+
+.about-page-glow {
+  position: absolute;
+  z-index: 0;
+  top: -8%;
+  right: -20%;
+  left: auto;
+  width: 75vw;
+  height: 65vw;
+  max-height: 1000px;
+  border-radius: 50%;
+  pointer-events: none;
+
+  background: radial-gradient(
+    ellipse at center,
+    rgba(180, 154, 108, 0.17) 0%,
+    rgba(180, 154, 108, 0.07) 35%,
+    transparent 70%
+  );
+
+  filter: blur(70px);
+  animation: aboutGoldenLight 18s ease-in-out infinite alternate;
+}
+
+@keyframes aboutGoldenLight {
+  0% {
+    transform: translate3d(0, 0, 0) scale(0.9);
+  }
+
+  50% {
+    transform: translate3d(-8vw, 5vh, 0) scale(1.05);
+  }
+
+  100% {
+    transform: translate3d(-2vw, 12vh, 0) scale(0.95);
+  }
+}
+
+@media (max-width: 768px) {
+  .about-page-glow {
+    width: 110vw;
+    height: 100vw;
+    right: -40%;
+    filter: blur(55px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-page-glow {
+    animation: none;
+  }
+  
+}
+
+/* FIX: MOBILE CTA CIRCLE */
+
+@media (max-width: 767px) {
+  .hero-cta {
+    right: 0;
+  }
+
+  .hero-cta-circle,
+  .hero-show .hero-cta::before {
+    top: 50%;
+    left: 50%;
+    width: 12rem;
+    height: 12rem;
+  }
+
+  .hero-cta span {
+    top: 42%;
+    left: 50%;
+    max-width: 75%;
+  }
+
+  .hero-cta svg {
+    top: calc(42% + 2.2rem);
+    left: 50%;
+  }
+}
+
+/* Hero Center Lines — All Screens */
+
+ .hero::before,
+.hero::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 37%;
+  height: 1px;
+  background: rgba(229, 204, 168, 0.45);
+  pointer-events: none;
+  z-index: 4;
+}
+
+
+.hero::before {
+  width: 80vh;
+  transform: translate(-50%, -50%) rotate(-45deg);
+} 
+
+/* Responsive diagonal line */
+.hero::before {
+  width: 80vh;
+  
+}
+
+
+
+
+/* موبایل کوچک: تا 400px */
+@media (max-width: 400px) {
+  .hero::before {
+    width: 60vh;
+    transform: translate(-50%, -50%) rotate(-25deg);
+  }
+}
+
+/* موبایل معمولی: 401px تا 767px */
+@media (min-width: 401px) and (max-width: 767px) {
+  .hero::before {
+    width: 65vh;
+    transform: translate(-50%, -50%) rotate(-30deg);
+  }
+}
+
+/* تبلت: 768px تا 1023px */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .hero::before {
+    width: 75vh;
+    /* transform: translate(-50%, -50%) rotate(-35deg); */
+    transform: translate(-50%, -50%) rotate(-40deg);
+  }
+}
+
+/* لپ‌تاپ کوچک: 1024px تا 1279px */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .hero::before {
+    width: 80vh;
+    transform: translate(-50%, -50%) rotate(-50deg);
+  }
+}
+
+/* دسکتاپ: 1280px به بالا */
+@media (min-width: 1280px) {
+  .hero::before {
+    width: 80vh;
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+}
+
+
+
+/* انیمیشن شناور شدن کارت‌های مراحل طراحی */
+@keyframes stageFloat {
+  /* شروع و پایان انیمیشن: کارت در موقعیت اصلی قرار دارد */
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  /* وسط انیمیشن: کارت ۱۰ پیکسل به سمت بالا حرکت می‌کند */
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+
+
+
+/* =========================================================
+   WORK MARQUEE — هماهنگ با Projects Marquee
+   ========================================================= */
+
+.work-marquee {
+  position: relative;
+  z-index: 0;
+  isolation: isolate;
+  width: 100%;
+  overflow: hidden;
+  padding: 22px 0;
+  margin-bottom: 24px;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.work-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: workMarqueeScroll 35s linear infinite;
+  will-change: transform;
+}
+
+.work-marquee-group {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 10px;
+  padding-right: 18px;
+}
+
+.work-marquee-word {
+  display: block;
+  flex-shrink: 0;
+  color: rgba(220, 220, 220, 0.12);
+  font-size: clamp(24px, 2.8vw, 38px);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0.035em;
+  white-space: nowrap;
+  transform: scaleX(0.78);
+  transform-origin: center;
+}
+
+@keyframes workMarqueeScroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 768px) {
+  .work-marquee {
+    padding: 16px 0;
+    margin-bottom: 18px;
+  }
+
+  .work-marquee-group {
+    gap: 5px;
+    padding-right: 10px;
+  }
+
+  .work-marquee-word {
     font-size: 10px;
     letter-spacing: 0.01em;
   }
