@@ -10,25 +10,19 @@ export default function IntroScreen() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsIntroComplete(true);
-    }, 3500);
+    }, 2800);
 
     return () => clearTimeout(timer);
   }, [setIsIntroComplete]);
 
-  
-   return (
-  <div className="intro-screen">
-    <div className="intro-screen__frame intro-screen__frame--top" />
-    <div className="intro-screen__frame intro-screen__frame--bottom" />
-    <div className="intro-screen__frame intro-screen__frame--left" />
-    <div className="intro-screen__frame intro-screen__frame--right" />
-
-    <div className="intro-screen__line" />
-
-    <span className="intro-screen__brand">
-      ARMAN VAZIRI
-    </span>
-  </div>
-);
+  return (
+    <div className="intro-screen">
+      <div className="intro-screen__frame intro-screen__frame--top" />
+      <div className="intro-screen__frame intro-screen__frame--bottom" />
+      <div className="intro-screen__frame intro-screen__frame--left" />
+      <div className="intro-screen__frame intro-screen__frame--right" />
+      <div className="intro-screen__line" />
+      <span className="intro-screen__brand">ARMAN VAZIRI</span>
+    </div>
+  );
 }
-

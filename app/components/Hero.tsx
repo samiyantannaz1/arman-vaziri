@@ -424,10 +424,10 @@ export default function Hero() {
 
         <div className="hero-divider" />
 
-        <a
-          href="#home-form"
-          className="hero-cta"
-        >
+      <a
+  href="/contact#home-form"
+  className="hero-cta"
+>
           <span>
             Send
             <br />

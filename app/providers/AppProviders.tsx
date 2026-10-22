@@ -3,6 +3,7 @@
 
 import type { ReactNode } from "react";
 import IntroScreenProvider from "./IntroScreenProvider";
+import OffcanvasProvider from "./OffcanvasProvider";
 
 interface AppProvidersProps {
   children: ReactNode;
@@ -13,7 +14,10 @@ export default function AppProviders({
 }: AppProvidersProps) {
   return (
     <IntroScreenProvider>
-      {children}
+       <OffcanvasProvider>
+        {children}
+       </OffcanvasProvider>
+      
     </IntroScreenProvider>
   );
 }
