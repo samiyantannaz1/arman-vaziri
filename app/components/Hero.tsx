@@ -425,7 +425,7 @@ export default function Hero() {
         <div className="hero-divider" />
 
       <a
-  href="/contact#home-form"
+     href="/arman-vaziri/contact#home-form"
   className="hero-cta"
 >
           <span>
