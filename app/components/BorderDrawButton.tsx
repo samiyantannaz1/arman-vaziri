@@ -1,6 +1,8 @@
 
 "use client";
 
+import Link from "next/link";
+
 interface BorderDrawButtonProps {
   href: string;
   children: React.ReactNode;
@@ -11,7 +13,7 @@ export default function BorderDrawButton({
   children,
 }: BorderDrawButtonProps) {
   return (
-    <a
+    <Link
       href={href}
       className="group relative inline-flex min-w-[220px] items-center justify-center border border-white/30 px-10 py-5"
     >
@@ -36,7 +38,6 @@ export default function BorderDrawButton({
       <span className="ml-5 text-base text-white transition-all duration-500 group-hover:translate-x-2 group-hover:text-[#c9a46a]">
         →
       </span>
-    </a>
+    </Link>
   );
 }
-
