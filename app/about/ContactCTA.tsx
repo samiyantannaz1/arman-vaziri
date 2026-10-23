@@ -29,7 +29,7 @@ export default function ContactCTA() {
             </p>
 
             <Link
-              href="/contacts"
+              href="/contact"
               className="group inline-flex items-center gap-6 border-b border-white/30 pb-4 text-xs uppercase tracking-[0.25em] text-white transition-colors duration-300 hover:border-[#b49a6c] hover:text-[#b49a6c]"
             >
               <span>Let’s Talk</span>
