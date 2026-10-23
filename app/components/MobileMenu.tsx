@@ -34,7 +34,7 @@ export default function MobileMenu() {
   return (
     <div className="md:hidden">
       {/* Mobile Header */}
-      <header className="fixed inset-x-0 top-0 z-[70] flex items-center justify-between px-5 py-5">
+    <header className="fixed inset-x-0 top-0 z-[70] flex items-center justify-between px-7 py-5 sm:px-8">
         <Link
           href="/"
           onClick={closeOffcanvas}
@@ -50,7 +50,7 @@ export default function MobileMenu() {
           aria-label={isOpen ? "Close menu" : "Open menu"}
           aria-expanded={isOpen}
           aria-controls="mobile-navigation"
-          className="relative z-[80] flex h-11 w-11 items-center justify-center text-white"
+         className="relative z-[80] mr-1 flex h-11 w-11 shrink-0 items-center justify-center text-white"
         >
           <span className="relative flex h-5 w-6 flex-col justify-center">
             <span
